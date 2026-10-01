@@ -2,6 +2,14 @@
 
 LedgerMatch is a local demonstration application for comparing internal payments with simulated Stripe, PayPal and bank transfer records. It exposes confidence scores, discrepancies and missing records through a React dashboard and FastAPI API. **Provider records are simulated; there are no live payment-provider integrations.** This is not a production-ready financial system.
 
+## What LedgerMatch does
+
+LedgerMatch demonstrates payment reconciliation: checking that a business's internal payment records agree with records reported by a payment processor or bank.
+
+For example, an internal record may show a $100 payment while a simulated provider record shows $97 after a $3 fee. The matching engine compares the amount, fee, currency, date and available identifying fields, then assigns a confidence score and reconciliation status. It can also identify differing amounts, provider records with no internal counterpart, internal payments with no provider record, and multiple possible matches.
+
+The dashboard summarizes those results; Transactions lists internal payments, Reconciliations lets you inspect matches and discrepancies, and Ask AI supports natural-language database questions when an Anthropic API key is configured. The intended use is a local portfolio/demo workflow for exploring reconciliation logic, not processing or moving money. All provider records are simulated, and CSV upload and manual review are not implemented.
+
 ## Existing features
 
 - Generate sample internal payments and simulate provider records, including orphan records.
@@ -108,11 +116,11 @@ Obsolete upstream screenshots and demo media were replaced with current local da
 
 ## Attribution and AI assistance
 
-LedgerMatch is derived from [peelmicro/payment-reconciliation-dashboard](https://github.com/peelmicro/payment-reconciliation-dashboard), the upstream **Payment Reconciliation Dashboard**. The reconciliation engine, API/data models, simulation services, React pages, tests, Docker configuration and n8n workflows are inherited. The branding, responsive layout, accessibility refinements and documentation changes described above were made in this version. Git history and authorship records have not been altered.
+LedgerMatch uses [tusharpanthri/clear-ledger](https://github.com/tusharpanthri/clear-ledger) as its upstream project. The reconciliation engine, API/data models, simulation services, React pages, tests, Docker configuration and n8n workflows are inherited. The branding, responsive layout, accessibility refinements and documentation changes described above were made in this version. This local repository was initialized with fresh Git history; that does not imply original authorship of inherited code. See ATTRIBUTION.md for the earlier source attribution recorded in the imported snapshot.
 
 No LICENSE, COPYING or standalone copyright notice was present in the inspected repository snapshot. This rebranding does not add a license or grant new rights; upstream attribution is preserved here and in [ATTRIBUTION.md](ATTRIBUTION.md).
 
-The upstream project disclosed Claude Code assistance with architecture, FastAPI/SQLAlchemy and React code, Docker configuration, test fixtures, debugging and documentation. That disclosure is retained; `CLAUDE.md` contains inherited development conventions. This rebranding and its verification were performed with OpenAI Codex assistance. These disclosures describe assistance, not an independent audit or guarantee.
+The imported project documentation disclosed Claude Code assistance with architecture, FastAPI/SQLAlchemy and React code, Docker configuration, test fixtures, debugging and documentation. That disclosure is retained; `CLAUDE.md` contains inherited development conventions. This rebranding and its verification were performed with OpenAI Codex assistance. These disclosures describe assistance, not an independent audit or guarantee.
 
 ### US dollar sample data
 
