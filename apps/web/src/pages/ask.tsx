@@ -4,8 +4,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useAsk } from "@/hooks/use-reconciliations";
+import { DEMO_MODE } from '@/lib/demo';
 
 export function AskPage() {
+  return DEMO_MODE ? <DemoAskPage /> : <LiveAskPage />;
+}
+
+function DemoAskPage() {
+  return <div className="space-y-6">
+    <h2 className="text-2xl font-bold">Ask AI</h2>
+    <Card><CardHeader><CardTitle>Available in the full app</CardTitle></CardHeader>
+      <CardContent className="space-y-3 text-muted-foreground">
+        <p>This demo runs entirely in your browser with fictional sample records. It does not send questions to an AI service.</p>
+        <p>The full LedgerMatch app uses a FastAPI backend, PostgreSQL and an Anthropic API key to answer questions about reconciliation data.</p>
+        <p>Explore the Dashboard, Transactions and Reconciliations pages to try the sample-data workspace.</p>
+        <a className="text-primary underline" href="https://github.com/tusharpanthri/ledger-match#setup-and-configuration">View full-app setup instructions</a>
+      </CardContent>
+    </Card>
+  </div>;
+}
+
+function LiveAskPage() {
   const [question, setQuestion] = useState("");
   const { mutate, data, isPending, error } = useAsk();
 

@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useSummary, useTrends } from "@/hooks/use-reconciliations";
 import { reconciliationStatusStyles } from "@/lib/status-colors";
+import { DEMO_MODE } from '@/lib/demo';
 import {
   BarChart,
   Bar,
@@ -21,7 +22,7 @@ function formatCents(cents: number): string {
 }
 
 function formatDiscrepancy(cents: number): string {
-  return `${formatCents(cents)} (mixed currencies)`;
+  return DEMO_MODE ? `$${formatCents(cents)}` : `${formatCents(cents)} (mixed currencies)`;
 }
 
 export function DashboardPage() {

@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { DEMO_MODE } from '@/lib/demo';
 
 const navItems = [
   { to: "/", label: "Dashboard" },
@@ -14,7 +15,7 @@ export function Layout() {
       {/* Sidebar */}
       <aside className="bg-sidebar text-sidebar-foreground p-5 md:w-64 md:shrink-0 md:p-6">
         <div className="mb-5 flex items-center gap-3 md:mb-8">
-          <img src="/favicon.svg" alt="" className="h-10 w-10 shrink-0" />
+          <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" className="h-10 w-10 shrink-0" />
           <div>
             <h1 className="text-xl font-bold tracking-tight">LedgerMatch</h1>
             <p className="mt-1 text-xs text-slate-300">Payment Reconciliation Platform</p>
@@ -43,6 +44,7 @@ export function Layout() {
 
       {/* Main content */}
       <main id="main-content" tabIndex={-1} className="min-w-0 flex-1 p-4 sm:p-6 md:overflow-auto lg:p-8">
+        {DEMO_MODE && <div className="mb-6 rounded-md border bg-muted p-3 text-sm">Interactive demo · Fictional sample data in USD. No live payments or backend connection. AI requires the full app.</div>}
         <Outlet />
       </main>
     </div>

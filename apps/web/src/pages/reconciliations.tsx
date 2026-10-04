@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { reconciliationStatusStyles } from "@/lib/status-colors";
@@ -47,6 +47,7 @@ export function ReconciliationsPage() {
       {/* Filter */}
       <div className="flex flex-wrap gap-4">
         <select
+          aria-label="Reconciliation status"
           value={statusFilter}
           onChange={(e) => { setStatusFilter(e.target.value); setPage(0); }}
           className="rounded-md border px-3 py-2 text-sm"
@@ -56,6 +57,7 @@ export function ReconciliationsPage() {
           <option value="matched_with_fee">Matched with Fee</option>
           <option value="amount_mismatch">Amount Mismatch</option>
           <option value="missing_internal">Missing Internal</option>
+          <option value="missing_external">Missing External</option>
           <option value="duplicate">Duplicate</option>
           <option value="disputed">Disputed</option>
         </select>
@@ -94,7 +96,7 @@ export function ReconciliationsPage() {
                       onClick={() => navigate(`/reconciliations/${r.id}`)}
                     >
                       <TableCell className="font-mono text-xs">
-                        {r.code}
+                        <Link to={`/reconciliations/${r.id}`} className="underline underline-offset-2" onClick={e => e.stopPropagation()}>{r.code}</Link>
                       </TableCell>
                       <TableCell>
                         <Badge

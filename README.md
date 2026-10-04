@@ -1,5 +1,24 @@
 # LedgerMatch: Payment Reconciliation Platform
 
+## GitHub Pages demo
+
+**[Open the interactive demo](https://tusharpanthri.github.io/ledger-match/)**
+
+The Pages build runs entirely in the browser using 48 fictional reconciliation records in USD dated September 17–28, 2026. Explore the dashboard, daily trends, transactions, status/method filters, pagination and linked reconciliation details. These fixtures illustrate outcomes; they do not run the Python matching engine or connect to payment providers. Ask AI is available only in the full backend-connected app.
+
+To build and preview the standalone demo:
+
+```bash
+cd apps/web
+npm ci
+npm run build:pages
+npm run preview -- --base=/ledger-match/
+```
+
+Open `http://localhost:4173/ledger-match/`. Hash-based URLs such as `#/reconciliations` support direct links and reloads on static hosting. `.env.pages` enables sample-data mode only for the Pages build; normal `npm run dev` / `npm run build` retain the backend-connected app.
+
+`.github/workflows/pages.yml` tests, builds and deploys changes to `main`. The repository's **Settings → Pages → Source** must be set to **GitHub Actions**.
+
 LedgerMatch is a local demonstration application for comparing internal payments with simulated Stripe, PayPal and bank transfer records. It exposes confidence scores, discrepancies and missing records through a React dashboard and FastAPI API. **Provider records are simulated; there are no live payment-provider integrations.** This is not a production-ready financial system.
 
 ## What LedgerMatch does

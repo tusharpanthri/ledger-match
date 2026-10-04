@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import { DEMO_MODE } from '@/lib/demo';
 import { Layout } from "@/components/layout";
 import { DashboardPage } from "@/pages/dashboard";
 import { TransactionsPage } from "@/pages/transactions";
@@ -7,8 +8,9 @@ import { ReconciliationDetailPage } from "@/pages/reconciliation-detail";
 import { AskPage } from "@/pages/ask";
 
 function App() {
+  const Router = DEMO_MODE ? HashRouter : BrowserRouter;
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<DashboardPage />} />
@@ -18,7 +20,7 @@ function App() {
           <Route path="/ask" element={<AskPage />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

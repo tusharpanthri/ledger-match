@@ -39,6 +39,7 @@ export function TransactionsPage() {
       {/* Filters */}
       <div className="flex flex-wrap gap-4">
         <select
+          aria-label="Payment status"
           value={statusFilter}
           onChange={(e) => { setStatusFilter(e.target.value); setPage(0); }}
           className="rounded-md border px-3 py-2 text-sm"
@@ -52,6 +53,7 @@ export function TransactionsPage() {
         </select>
 
         <select
+          aria-label="Payment method"
           value={methodFilter}
           onChange={(e) => { setMethodFilter(e.target.value); setPage(0); }}
           className="rounded-md border px-3 py-2 text-sm"
